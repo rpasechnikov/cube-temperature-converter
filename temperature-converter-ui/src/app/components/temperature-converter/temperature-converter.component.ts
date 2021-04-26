@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { SelectOption } from 'src/app/models';
 import { TemperatureConverterService } from 'src/app/services/temperature-converter.service';
 
@@ -12,8 +13,8 @@ export class TemperatureConverterComponent implements OnInit {
   inValue: number;
   outValue: number;
 
-  inTemperatureType: number;
-  outTemperatureType: number;
+  sourceTemperatureType: number;
+  destinationTemperatureType: number;
 
   temperatureTypes$: Observable<SelectOption<number>>;
 
@@ -22,6 +23,17 @@ export class TemperatureConverterComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  onConvert(): void {
+    this.tempConverterService
+      .convertTemperature({
+        value: this.inValue,
+        sourceTemperatureType: this.sourceTemperatureType,
+        destinationTemperatureType: this.destinationTemperatureType
+      })
+      .pipe(take(1))
+      .subscribe(result => (this.outValue = result));
+  }
 
   private initialize(): void {
     this.temperatureTypes$ = this.tempConverterService.getTemperatureTypes();

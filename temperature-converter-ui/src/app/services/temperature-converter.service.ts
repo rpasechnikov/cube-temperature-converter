@@ -12,12 +12,12 @@ export class TemperatureConverterService {
   constructor(private httpClient: HttpClient) {}
 
   getTemperatureTypes(): Observable<SelectOption<number>> {
-    return this.httpClient.get<SelectOption<number>>(this.getApiUrl('temperatureTypes'));
+    return this.httpClient.get<SelectOption<number>>(this.getApiUrl('temperatureConverter/temperatureTypes'));
   }
 
   convertTemperature(model: TemperatureConversionModel): Observable<number> {
     // TODO: add error handling
-    return this.httpClient.post(this.getApiUrl('convert'), model).pipe(map(result => +result));
+    return this.httpClient.post(this.getApiUrl('temperatureConverter/convert'), model).pipe(map(result => +result));
   }
 
   getApiUrl(url: string): string {

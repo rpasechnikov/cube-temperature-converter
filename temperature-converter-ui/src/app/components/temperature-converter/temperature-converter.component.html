@@ -11,7 +11,7 @@
         bindValue="id"
         placeholder="Input temperature type"
         [items]="temperatureTypes$ | async"
-        [(ngModel)]="inTemperatureType"
+        [(ngModel)]="sourceTemperatureType"
       >
       </ng-select>
     </div>
@@ -23,12 +23,15 @@
         bindValue="id"
         placeholder="Output temperature type"
         [items]="temperatureTypes$ | async"
-        [(ngModel)]="outTemperatureType"
+        [(ngModel)]="destinationTemperatureType"
       >
       </ng-select>
     </div>
   </div>
   <div class="row">
     <div class="col"><input [(ngModel)]="outValue" disabled /></div>
+  </div>
+  <div class="row">
+    <div class="col"><button class="btn btn-light" (click)="onConvert()">Convert</button></div>
   </div>
 </div>
