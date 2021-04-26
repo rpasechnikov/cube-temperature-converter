@@ -1,7 +1,9 @@
-﻿using Cube.Temperature.Converter.API.Services.Interfaces;
+﻿using Cube.Temperature.Converter.API.Enums;
+using Cube.Temperature.Converter.API.Services.Interfaces;
 using Cube.Temperature.Converter.API.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Cube.Temperature.Converter.API.Controllers
 {
@@ -18,6 +20,12 @@ namespace Cube.Temperature.Converter.API.Controllers
             _temperatureConverterService = temperatureConverterService;
         }
 
+        [HttpGet("temperatureTypes")]
+        [ProducesResponseType(typeof(ICollection<SelectOptionViewModel<TemperatureType>>), StatusCodes.Status200OK)]
+        public IActionResult GetTemperatureTypes()
+        {
+            return Ok(_temperatureConverterService.GetTemperatureTypes());
+        }
 
         [HttpPost("convert")]
         [ProducesResponseType(typeof(double), StatusCodes.Status200OK)]

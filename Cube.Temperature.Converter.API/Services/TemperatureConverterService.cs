@@ -2,6 +2,7 @@
 using Cube.Temperature.Converter.API.Services.Interfaces;
 using Cube.Temperature.Converter.API.ViewModels;
 using System;
+using System.Collections.Generic;
 
 namespace Cube.Temperature.Converter.API.Services
 {
@@ -11,7 +12,35 @@ namespace Cube.Temperature.Converter.API.Services
     public class TemperatureConverterService : ITemperatureConverterService
     {
         /// <summary>
+        /// Gets available temperature types to convert to/from
+        /// </summary>
+        public ICollection<SelectOptionViewModel<TemperatureType>> GetTemperatureTypes()
+        {
+            // TODO: create a helper functon
+            return new List<SelectOptionViewModel<TemperatureType>>
+            {
+                new SelectOptionViewModel<TemperatureType>
+                {
+                    Id = TemperatureType.Celcius,
+                    Name = TemperatureType.Celcius.ToString()
+                },
+                new SelectOptionViewModel<TemperatureType>
+                {
+                    Id = TemperatureType.Fahrenheit,
+                    Name = TemperatureType.Fahrenheit.ToString()
+                },
+                new SelectOptionViewModel<TemperatureType>
+                {
+                    Id = TemperatureType.Kelvin,
+                    Name = TemperatureType.Kelvin.ToString()
+                }
+            };
+        }
+
+        /// <summary>
         /// Converts provided temperature from source to destination type
+        /// 
+        /// TODO: add unit tests
         /// </summary>
         public double Convert(TemperatureConversionViewModel viewModel)
         {
