@@ -18,4 +18,4 @@ Simple .Net & Angular utility to convert temperature from/to Celcius, Fahrenheit
 - Once both API and UI are running, navigate to http://localhost:4200/
 
 # Preview
-![Temperature Converter preview](https://github.com/rpasechnikov/cube-temperature-converter/preview.png)
+![Temperature Converter preview](https://github.com/rpasechnikov/cube-temperature-converter/blob/main/preview.png)
