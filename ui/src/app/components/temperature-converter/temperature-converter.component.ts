@@ -18,6 +18,15 @@ export class TemperatureConverterComponent implements OnInit {
 
   temperatureTypes$: Observable<SelectOption<number>>;
 
+  // TODO: replace with reactive forms? Could be overkill here
+  get isFormValid(): boolean {
+    return (
+      !this.isNullOrEmpty(this.inValue) &&
+      !this.isNullOrEmpty(this.sourceTemperatureType) &&
+      !this.isNullOrEmpty(this.destinationTemperatureType)
+    );
+  }
+
   constructor(private tempConverterService: TemperatureConverterService) {
     this.initialize();
   }
@@ -37,5 +46,10 @@ export class TemperatureConverterComponent implements OnInit {
 
   private initialize(): void {
     this.temperatureTypes$ = this.tempConverterService.getTemperatureTypes();
+  }
+
+  // TODO: extract into utils
+  private isNullOrEmpty<T>(value: T): boolean {
+    return value === undefined || value === null;
   }
 }
